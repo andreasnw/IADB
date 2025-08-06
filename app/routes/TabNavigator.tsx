@@ -24,6 +24,7 @@ const TabNavigator = createBottomTabNavigator({
     tabBarInactiveTintColor: theme.dark.colors.tabBarInactive,
     tabBarStyle: {
       backgroundColor: theme.dark.colors.tabBarBackground,
+      borderTopWidth: 0,
     },
   }),
 });

@@ -180,7 +180,7 @@ const shadows = {
 const darkTheme = {
   colors: {
     // Background colors (dark theme)
-    background: colors.dark[200], //  main dark #191414
+    background: colors.dark[300], //  main dark #191414
     surface: colors.dark[100], // Dark card background #212121
     card: colors.dark[100], // Card backgrounds
     modal: colors.dark[300], // Modal backgrounds

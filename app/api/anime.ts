@@ -2,81 +2,81 @@ import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import api from ".";
 import { PAGE_SIZE } from "../config/constants";
 
-export interface MalEntity {
+export interface IMalEntity {
   mal_id: number;
   type: string;
   name: string;
   url: string;
 }
 
-export interface ImageSet {
+export interface IImageSet {
   image_url: string;
   small_image_url: string;
   large_image_url: string;
 }
 
-export interface DateProps {
+export interface IDateProps {
   day: number;
   month: number;
   year: number;
 }
 
-export interface NameUrlPair {
+export interface INameUrlPair {
   name: string;
   url: string;
 }
 
-export interface TitleEntry {
+export interface ITitleEntry {
   type: string;
   title: string;
 }
 
-export interface Trailer {
+export interface ITrailer {
   youtube_id: string;
   url: string;
   embed_url: string;
 }
 
-export interface Images {
-  jpg: ImageSet;
-  webp: ImageSet;
+export interface IImages {
+  jpg: IImageSet;
+  webp: IImageSet;
 }
 
-export interface AiredInfo {
+export interface IAiredInfo {
   from: string;
   to: string;
   prop: {
-    from: DateProps;
-    to: DateProps;
+    from: IDateProps;
+    to: IDateProps;
     string: string;
   };
 }
 
-export interface Broadcast {
+export interface IBroadcast {
   day: string;
   time: string;
   timezone: string;
   string: string;
 }
 
-export interface Relation {
+export interface IRelation {
   relation: string;
-  entry: MalEntity[];
+  entry: IMalEntity[];
 }
 
-export interface ThemeInfo {
+export interface IThemeInfo {
   openings: string[];
   endings: string[];
 }
 
 // Main anime data interface
-export interface AnimeData {
+export interface IAnimeData {
   mal_id: number;
   url: string;
-  images: Images;
-  trailer: Trailer;
+  images: IImages;
+  trailer: ITrailer;
   approved: boolean;
-  titles: TitleEntry[];
+  titles: ITitleEntry[];
   title: string;
   title_english: string;
   title_japanese: string;
@@ -86,7 +86,7 @@ export interface AnimeData {
   episodes: number;
   status: "Finished Airing" | "Currently Airing" | "Not yet aired";
   airing: boolean;
-  aired: AiredInfo;
+  aired: IAiredInfo;
   duration: string;
   rating:
     | "G - All Ages"
@@ -105,18 +105,18 @@ export interface AnimeData {
   background: string;
   season: "winter" | "spring" | "summer" | "fall";
   year: number;
-  broadcast: Broadcast;
-  producers: MalEntity[];
-  licensors: MalEntity[];
-  studios: MalEntity[];
-  genres: MalEntity[];
-  explicit_genres: MalEntity[];
-  themes: MalEntity[];
-  demographics: MalEntity[];
-  relations: Relation[];
-  theme: ThemeInfo;
-  external: NameUrlPair[];
-  streaming: NameUrlPair[];
+  broadcast: IBroadcast;
+  producers: IMalEntity[];
+  licensors: IMalEntity[];
+  studios: IMalEntity[];
+  genres: IMalEntity[];
+  explicit_genres: IMalEntity[];
+  themes: IMalEntity[];
+  demographics: IMalEntity[];
+  relations: IRelation[];
+  theme: IThemeInfo;
+  external: INameUrlPair[];
+  streaming: INameUrlPair[];
 }
 
 export interface IItem {
@@ -133,12 +133,12 @@ export interface IPagination {
 }
 
 export interface IAnimeListResponse {
-  data: AnimeData[];
+  data: IAnimeData[];
   pagination: IPagination;
 }
 
 export interface IAnimeDetailResponse {
-  data: AnimeData;
+  data: IAnimeData;
 }
 
 export const useGetAnimeList = () => {

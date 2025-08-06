@@ -1,13 +1,14 @@
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import React from "react";
+import { FavouritesProvider } from "./app/providers/FavouritesProvider";
+import QueryClientProvider from "./app/providers/QueryClientProvider";
 import Navigation from "./app/routes";
 
 const App = () => {
-  const queryClient = new QueryClient();
-
   return (
-    <QueryClientProvider client={queryClient}>
-      <Navigation />
+    <QueryClientProvider>
+      <FavouritesProvider>
+        <Navigation />
+      </FavouritesProvider>
     </QueryClientProvider>
   );
 };
