@@ -1,5 +1,6 @@
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import api from ".";
+import { PAGE_SIZE } from "../config/constants";
 
 export interface MalEntity {
   mal_id: number;
@@ -146,7 +147,7 @@ export const useGetAnimeList = () => {
     queryFn: async ({ pageParam }) => {
       const response = await api.get<IAnimeListResponse>(`anime`, {
         params: {
-          limit: 10,
+          limit: PAGE_SIZE,
           page: pageParam,
         },
       });
