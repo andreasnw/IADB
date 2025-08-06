@@ -2,9 +2,11 @@
 const { defineConfig } = require("eslint/config");
 const expoConfig = require("eslint-config-expo/flat");
 const typescriptPlugin = require("@typescript-eslint/eslint-plugin");
+const eslintPluginPrettierRecommended = require("eslint-plugin-prettier/recommended");
 
 module.exports = defineConfig([
   expoConfig,
+  eslintPluginPrettierRecommended,
   {
     ignores: ["dist/*"],
     plugins: {
