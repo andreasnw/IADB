@@ -1,6 +1,6 @@
 {
   "name": "iadb",
-  "main": "expo-router/entry",
+  "main": "index.tsx",
   "version": "1.0.0",
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
