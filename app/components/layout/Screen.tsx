@@ -41,7 +41,7 @@ interface ScreenProps {
   contentContainerStyle?: ViewStyle;
 
   // Status bar
-  statusBarStyle?: "default" | "dark-content" | "dark-content";
+  statusBarStyle?: "default" | "dark-content";
   statusBarBackgroundColor?: string;
 }
 
@@ -54,10 +54,10 @@ const Screen: React.FC<ScreenProps> = ({
   backgroundVariant = "primary",
 
   // Safe area props
-  safeAreaTop = true,
-  safeAreaBottom = true,
-  safeAreaLeft = true,
-  safeAreaRight = true,
+  safeAreaTop = false,
+  safeAreaBottom = false,
+  safeAreaLeft = false,
+  safeAreaRight = false,
 
   // Spacing props
   padding,
@@ -68,7 +68,7 @@ const Screen: React.FC<ScreenProps> = ({
   scrollViewProps,
   style,
   contentContainerStyle,
-  statusBarStyle = "dark-content",
+  statusBarStyle = "default",
   statusBarBackgroundColor,
 }) => {
   const insets = useSafeAreaInsets();

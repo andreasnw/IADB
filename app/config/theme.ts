@@ -89,15 +89,15 @@ const colors = {
 // Typography system
 const typography = {
   fontSize: {
-    xs: 12,
-    sm: 14,
-    base: 16,
-    lg: 18,
-    xl: 20,
-    "2xl": 24,
-    "3xl": 30,
-    "4xl": 36,
-    "5xl": 48,
+    xs: 8,
+    sm: 12,
+    base: 14,
+    lg: 16,
+    xl: 18,
+    "2xl": 20,
+    "3xl": 24,
+    "4xl": 28,
+    "5xl": 32,
   },
 
   lineHeight: {
@@ -225,6 +225,7 @@ const darkTheme = {
 // Component styles
 const components = {
   button: {
+    activeOpacity: 0.8,
     base: {
       borderRadius: borderRadius.full,
       paddingHorizontal: spacing[6],
