@@ -172,3 +172,12 @@ export const useGetAnimeDetail = ({ id }: { id: number }) => {
     },
   });
 };
+
+export interface IAnimeGenresResponse {
+  data: IAnimeGenre[];
+}
+
+export interface IAnimeGenre {
+  mal_id: number;
+  name: string;
+}
