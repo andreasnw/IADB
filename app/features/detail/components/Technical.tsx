@@ -22,7 +22,9 @@ const Section = ({
       <Text variant="h6" weight="bold" color="primary">
         {title}
       </Text>
-      <Text variant="bodySmall">{value ?? "N/A"}</Text>
+      <Text variant="bodySmall" style={styles.value} numberOfLines={1}>
+        {value ?? "N/A"}
+      </Text>
     </View>
   );
 };
@@ -59,5 +61,11 @@ const styles = StyleSheet.create({
     paddingVertical: theme.spacing[2],
     borderBottomWidth: 1,
     borderColor: theme.dark.colors.borderLight,
+  },
+  title: {
+    flexShrink: 1,
+  },
+  value: {
+    flexShrink: 1,
   },
 });

@@ -28,7 +28,7 @@ const Detail = ({ route }: DetailProps) => {
       title: data.data.title,
       description: `${data.data.year} - ${data.data.rating} - ${data.data.duration}`,
     };
-  }, [data]);
+  }, [data, isLoading]);
 
   const renderContent = useCallback(() => {
     if (isLoading) {
