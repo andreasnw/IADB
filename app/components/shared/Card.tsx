@@ -1,5 +1,5 @@
 import { IAnimeData } from "@/app/api/anime";
-import { CARD_HEIGHT } from "@/app/config/constants";
+import { CARD_HEIGHT, IMAGE_RATIO } from "@/app/config/constants";
 import { theme } from "@/app/config/theme";
 import React from "react";
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
   },
   image: {
     width: IMAGE_WIDTH,
-    aspectRatio: 225 / 335,
+    aspectRatio: IMAGE_RATIO,
     borderRadius: theme.borderRadius.sm,
   },
   contentContainer: {
