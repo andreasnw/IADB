@@ -7,13 +7,12 @@ import { useFavourites } from "@/app/providers/FavouritesProvider";
 import { AntDesign, Entypo, FontAwesome6 } from "@expo/vector-icons";
 import React from "react";
 import { Image, StyleSheet, View } from "react-native";
-import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import Animated, {
   FadeInUp,
-  runOnJS,
   useAnimatedStyle,
   useSharedValue,
-  withSpring,
+  withSequence,
+  withTiming,
 } from "react-native-reanimated";
 
 const IMAGE_WIDTH = 100;
@@ -29,6 +28,10 @@ const Poster = ({ anime }: { anime: IAnimeData }) => {
   const isFavourited = isFavourite(mal_id);
 
   const handleToggleFavourite = () => {
+    scale.value = withSequence(
+      withTiming(0.8, { duration: 40 }),
+      withTiming(1, { duration: 40 }),
+    );
     return toggleFavourite(anime);
   };
 
@@ -37,15 +40,6 @@ const Poster = ({ anime }: { anime: IAnimeData }) => {
       transform: [{ scale: scale.value }],
     };
   });
-
-  const tapGesture = Gesture.Tap()
-    .onBegin(() => {
-      scale.value = withSpring(0.95, { damping: 15, stiffness: 300 });
-    })
-    .onFinalize(() => {
-      scale.value = withSpring(1, { damping: 15, stiffness: 300 });
-      runOnJS(handleToggleFavourite)();
-    });
 
   return (
     <View style={styles.container}>
@@ -71,25 +65,24 @@ const Poster = ({ anime }: { anime: IAnimeData }) => {
           {rank}
         </Text>
       </Animated.View>
-      <GestureDetector gesture={tapGesture}>
-        <AnimatedButton
-          style={animatedButtonStyle}
-          title={isFavourited ? "Favourited" : "Add to favourites"}
-          variant={isFavourited ? "primary" : "outline"}
-          size="sm"
-          leftIcon={
-            <Entypo
-              name={isFavourited ? "heart" : "heart-outlined"}
-              size={12}
-              color={
-                isFavourited
-                  ? theme.dark.colors.background
-                  : theme.dark.colors.primary
-              }
-            />
-          }
-        />
-      </GestureDetector>
+      <AnimatedButton
+        onPress={handleToggleFavourite}
+        style={animatedButtonStyle}
+        title={isFavourited ? "Favourited" : "Add to favourites"}
+        variant={isFavourited ? "primary" : "outline"}
+        size="sm"
+        leftIcon={
+          <Entypo
+            name={isFavourited ? "heart" : "heart-outlined"}
+            size={12}
+            color={
+              isFavourited
+                ? theme.dark.colors.background
+                : theme.dark.colors.primary
+            }
+          />
+        }
+      />
     </View>
   );
 };

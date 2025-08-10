@@ -4,7 +4,6 @@ import AnimeList from "@/app/components/shared/AnimeList";
 import { useGenre } from "@/app/providers/GenreProvider";
 import { useNavigation } from "@react-navigation/native";
 import React, { Fragment, useCallback, useMemo } from "react";
-import Toast from "react-native-toast-message";
 import { useGetAnimeList } from "../../api/anime";
 import Filter from "./components/Filter";
 
@@ -14,7 +13,6 @@ const Home = () => {
   const {
     data,
     isLoading,
-    isError,
     fetchNextPage,
     hasNextPage,
     isFetching,
@@ -43,14 +41,6 @@ const Home = () => {
   const onFilterPress = useCallback(() => {
     return navigation.navigate("Genre");
   }, [navigation]);
-
-  if (isError) {
-    Toast.show({
-      text1: "Error",
-      text2: error?.message,
-      type: "error",
-    });
-  }
 
   return (
     <Screen variant="fixed">
