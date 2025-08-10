@@ -24,6 +24,7 @@ interface ButtonProps extends TouchableOpacityProps {
   rightIcon?: React.ReactNode;
   icon?: React.ReactNode; // For icon-only buttons
   isIconButton?: boolean; // Explicitly mark as icon button
+  textStyle?: TextStyle | TextStyle[];
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -38,6 +39,7 @@ const Button: React.FC<ButtonProps> = ({
   icon,
   isIconButton,
   style,
+  textStyle,
   ...props
 }) => {
   const isDisabled = disabled || loading;
@@ -84,8 +86,9 @@ const Button: React.FC<ButtonProps> = ({
       styles[`${size}Text`],
       styles[`${variant}Text`],
       dynamicTextStyle,
+      textStyle,
     ],
-    [size, variant, dynamicTextStyle],
+    [size, variant, dynamicTextStyle, textStyle],
   );
 
   const renderContent = useCallback(() => {

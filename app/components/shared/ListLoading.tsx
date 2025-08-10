@@ -4,11 +4,14 @@ import React from "react";
 import { StyleSheet, View } from "react-native";
 import LoadingPlaceholder from "../ui/LoadingPlaceholder";
 
-const ListLoading = () => {
+const ListLoading = ({ cardHeight }: { cardHeight?: number }) => {
   return (
     <View style={styles.container}>
       {Array.from({ length: PAGE_SIZE }).map((_, index) => (
-        <LoadingPlaceholder key={index} style={styles.loading} />
+        <LoadingPlaceholder
+          key={index}
+          style={[styles.loading, { height: cardHeight ?? CARD_HEIGHT }]}
+        />
       ))}
     </View>
   );
@@ -21,7 +24,6 @@ const styles = StyleSheet.create({
     gap: theme.spacing[1],
   },
   loading: {
-    height: CARD_HEIGHT,
     width: "100%",
   },
 });

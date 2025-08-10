@@ -141,14 +141,15 @@ export interface IAnimeDetailResponse {
   data: IAnimeData;
 }
 
-export const useGetAnimeList = () => {
+export const useGetAnimeList = ({ genre }: { genre: number | null }) => {
   return useInfiniteQuery({
-    queryKey: ["anime"],
+    queryKey: ["anime", genre],
     queryFn: async ({ pageParam }) => {
       const response = await api.get<IAnimeListResponse>(`anime`, {
         params: {
           limit: PAGE_SIZE,
           page: pageParam,
+          genres: genre,
         },
       });
       return response.data;
@@ -180,4 +181,18 @@ export interface IAnimeGenresResponse {
 export interface IAnimeGenre {
   mal_id: number;
   name: string;
+  url: string;
+  count: number;
 }
+
+export const useGetAnimeGenres = () => {
+  return useQuery({
+    queryKey: ["anime", "genres"],
+    queryFn: async () => {
+      const response = await api.get<IAnimeGenresResponse>(`genres/anime`);
+      return response.data;
+    },
+    staleTime: Infinity,
+    gcTime: Infinity,
+  });
+};

@@ -1,14 +1,16 @@
 import Header from "@/app/components/layout/Header";
 import Screen from "@/app/components/layout/Screen";
 import AnimeList from "@/app/components/shared/AnimeList";
+import { useGenre } from "@/app/providers/GenreProvider";
 import { useNavigation } from "@react-navigation/native";
 import React, { Fragment, useCallback, useMemo } from "react";
-import { ActivityIndicator } from "react-native";
 import Toast from "react-native-toast-message";
 import { useGetAnimeList } from "../../api/anime";
+import Filter from "./components/Filter";
 
 const Home = () => {
   const navigation = useNavigation();
+  const { genre } = useGenre();
   const {
     data,
     isLoading,
@@ -18,7 +20,7 @@ const Home = () => {
     isFetching,
     error,
     refetch,
-  } = useGetAnimeList();
+  } = useGetAnimeList({ genre: genre?.mal_id ?? null });
 
   const animeList = useMemo(
     () => data?.pages.flatMap((page) => page.data) ?? [],
@@ -38,6 +40,10 @@ const Home = () => {
     [navigation],
   );
 
+  const onFilterPress = useCallback(() => {
+    return navigation.navigate("Genre");
+  }, [navigation]);
+
   if (isError) {
     Toast.show({
       text1: "Error",
@@ -47,13 +53,19 @@ const Home = () => {
   }
 
   return (
-    <Screen variant="fixed" safeAreaTop={false} safeAreaBottom={false}>
+    <Screen variant="fixed">
       <Header
         leftAction={<Fragment />}
         title="Anime List"
         backgroundVariant="transparent"
         backgroundColor="transparent"
-        rightAction={isFetching ? <ActivityIndicator /> : null}
+        rightAction={
+          <Filter
+            isFiltered={!!genre}
+            onPress={onFilterPress}
+            isFetching={isFetching}
+          />
+        }
       />
       <AnimeList
         animeList={animeList}

@@ -11,7 +11,7 @@ import {
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { theme } from "../../config/theme";
 
-type ScreenVariant = "scroll" | "fixed" | "keyboard";
+type ScreenVariant = "scroll" | "fixed" | "keyboard" | "modal";
 type BackgroundVariant = "primary" | "secondary" | "surface" | "card";
 
 interface ScreenProps {
@@ -156,6 +156,19 @@ const Screen: React.FC<ScreenProps> = ({
     );
   }
 
+  // variant === "modal"
+  if (variant === "modal") {
+    return (
+      <>
+        <StatusBar
+          barStyle={statusBarStyle}
+          backgroundColor={statusBarBackground}
+        />
+        <View style={[containerStyle, styles.modal]}>{children}</View>
+      </>
+    );
+  }
+
   // variant === "fixed"
   return (
     <>
@@ -178,6 +191,11 @@ const styles = StyleSheet.create({
   },
   flex: {
     flex: 1,
+  },
+  modal: {
+    backgroundColor: "transparent",
+    justifyContent: "flex-end",
+    paddingBottom: theme.spacing[8],
   },
 
   // Background variants
