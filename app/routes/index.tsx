@@ -10,7 +10,12 @@ import TabNavigator from "./TabNavigator";
 const RootStack = createNativeStackNavigator({
   screens: {
     TabNavigator: TabNavigator,
-    Detail: Detail,
+    Detail: {
+      screen: Detail,
+      linking: {
+        path: "detail/:id",
+      },
+    },
     Genre: {
       screen: Genre,
       options: {

@@ -1,6 +1,7 @@
 import { IAnimeData } from "@/app/api/anime";
 import { CARD_HEIGHT, IMAGE_RATIO } from "@/app/config/constants";
 import { theme } from "@/app/config/theme";
+import { AntDesign } from "@expo/vector-icons";
 import React from "react";
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 import Text from "../ui/Text";
@@ -25,7 +26,8 @@ const Card = ({ anime, onCardPress }: CardProps) => {
       />
       <View style={styles.contentContainer}>
         <Text variant="bodySmall" color="textMuted">
-          🌟 {anime.score}
+          <AntDesign name="star" size={12} color={theme.dark.colors.warning} />{" "}
+          {anime.score}
         </Text>
         <Text variant="body" weight="bold" numberOfLines={1}>
           {anime.title}

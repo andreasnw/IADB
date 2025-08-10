@@ -6,10 +6,17 @@ import ErrorState from "@/app/components/ui/ErrorState";
 import theme from "@/app/config/theme";
 import Poster from "@/app/features/detail/components/Poster";
 import { StaticScreenProps, useNavigation } from "@react-navigation/native";
+import * as Linking from "expo-linking";
 import React, { Fragment, useCallback, useMemo } from "react";
-import { ActivityIndicator, StyleSheet, View } from "react-native";
+import {
+  ActivityIndicator,
+  Share as RNShare,
+  StyleSheet,
+  View,
+} from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import Content from "./components/Content";
+import Share from "./components/Share";
 import Technical from "./components/Technical";
 
 type DetailProps = StaticScreenProps<{
@@ -29,6 +36,18 @@ const Detail = ({ route }: DetailProps) => {
       description: `${data.data.year} - ${data.data.rating} - ${data.data.duration}`,
     };
   }, [data, isLoading]);
+
+  const goBack = useCallback(() => {
+    navigation.goBack();
+  }, [navigation]);
+
+  const onSharePress = useCallback(() => {
+    const appScheme = Linking.createURL("/");
+    const url = new URL(`${appScheme}/detail/${id}`);
+    return RNShare.share({
+      message: url.toString(),
+    });
+  }, [id]);
 
   const renderContent = useCallback(() => {
     if (isLoading) {
@@ -60,10 +79,6 @@ const Detail = ({ route }: DetailProps) => {
     );
   }, [isLoading, isError, refetch, data]);
 
-  const goBack = useCallback(() => {
-    navigation.goBack();
-  }, [navigation]);
-
   return (
     <GestureHandlerRootView>
       <Header
@@ -72,6 +87,7 @@ const Detail = ({ route }: DetailProps) => {
         title={header.title}
         subtitle={header.description}
         backgroundColor={theme.dark.colors.background}
+        rightAction={<Share onPress={onSharePress} />}
       />
       <Screen variant="scroll" safeAreaTop={false} safeAreaBottom={false}>
         {renderContent()}

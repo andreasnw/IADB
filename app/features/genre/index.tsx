@@ -11,11 +11,18 @@ import { useGenre } from "@/app/providers/GenreProvider";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import React, { Fragment, useCallback, useMemo } from "react";
-import { FlatList, ListRenderItemInfo, StyleSheet, View } from "react-native";
+import {
+  FlatList,
+  ListRenderItemInfo,
+  Platform,
+  StyleSheet,
+  View,
+} from "react-native";
 import Footer from "./components/Footer";
 import Item from "./components/Item";
 
 const Genre = () => {
+  const isAndroid = Platform.OS === "android";
   const navigation = useNavigation();
   const { data, isLoading, error, refetch } = useGetAnimeGenres();
   const { setGenre, getSelectedGenre } = useGenre();
@@ -73,7 +80,7 @@ const Genre = () => {
               backgroundColor={theme.dark.colors.background}
               leftAction={<Fragment />}
               variant="minimal"
-              safeAreaTop={false}
+              safeAreaTop={isAndroid}
               rightAction={
                 <Button
                   variant="ghost"

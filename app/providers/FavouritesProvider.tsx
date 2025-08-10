@@ -46,7 +46,10 @@ export const FavouritesProvider = ({
 
   const toggleFavourite = useCallback((favourite: IAnimeData) => {
     setFavourites((prev) => {
-      if (prev.length === 0) return [favourite];
+      if (prev.length === 0) {
+        saveFavourites([favourite]);
+        return [favourite];
+      }
 
       let updated = [...prev];
 
@@ -57,6 +60,7 @@ export const FavouritesProvider = ({
       } else {
         updated = [...updated, favourite];
       }
+
       saveFavourites(updated);
       return updated;
     });
