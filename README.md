@@ -18,13 +18,13 @@ Internet Anime Database (IADB) is a mobile app built with **React Native**, **Ex
 ## 📚 Table of Contents
 
 - [🚀 Get Started](#-get-started)
-- [📁 Directory Structure](#-directory-structure)
 - [🧭 Centrally Managed & Type-Safe Navigation](#-centrally-managed--type-safe-navigation)
 - [📡 Data Fetching](#-data-fetching)
 - [🗂️ State Management](#-state-management)
 - [🧩 Composable Component Design](#-composable-component-design)
 - [📝 Code Style & Conventions](#-code-style--conventions)
-
+- [📁 Directory Structure](#-directory-structure)
+- [📁 Directory Structure](#-known-limitations)
 
 
 ## 🚀 Get Started
