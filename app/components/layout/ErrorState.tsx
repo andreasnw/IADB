@@ -2,7 +2,7 @@ import { theme } from "@/app/config/theme";
 import { Feather } from "@expo/vector-icons";
 import React from "react";
 import { StyleSheet, TouchableOpacity } from "react-native";
-import Text from "./Text";
+import Text from "../ui/Text";
 
 const ErrorState = ({
   title,

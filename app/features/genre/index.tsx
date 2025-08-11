@@ -1,12 +1,12 @@
 import { IAnimeGenre, useGetAnimeGenres } from "@/app/api/anime";
+import EmptyState from "@/app/components/layout/EmptyState";
+import ErrorState from "@/app/components/layout/ErrorState";
 import Header from "@/app/components/layout/Header";
 import Screen from "@/app/components/layout/Screen";
 import ListLoading from "@/app/components/shared/ListLoading";
 import Button from "@/app/components/ui/Button";
-import EmptyState from "@/app/components/ui/EmptyState";
-import ErrorState from "@/app/components/ui/ErrorState";
 import { ANIMATION_DURATION } from "@/app/config/constants";
-import theme from "@/app/config/theme";
+import { theme } from "@/app/config/theme";
 import { useGenre } from "@/app/providers/GenreProvider";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";

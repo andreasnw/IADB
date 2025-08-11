@@ -1,9 +1,9 @@
 import { useGetAnimeDetail } from "@/app/api/anime";
+import EmptyState from "@/app/components/layout/EmptyState";
+import ErrorState from "@/app/components/layout/ErrorState";
 import Header from "@/app/components/layout/Header";
 import Screen from "@/app/components/layout/Screen";
-import EmptyState from "@/app/components/ui/EmptyState";
-import ErrorState from "@/app/components/ui/ErrorState";
-import theme from "@/app/config/theme";
+import { theme } from "@/app/config/theme";
 import Poster from "@/app/features/detail/components/Poster";
 import { StaticScreenProps, useNavigation } from "@react-navigation/native";
 import * as Linking from "expo-linking";
@@ -14,12 +14,10 @@ import {
   StyleSheet,
   View,
 } from "react-native";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
 import Content from "./components/Content";
 import Share from "./components/Share";
-import Technical from "./components/Technical";
 
-type DetailProps = StaticScreenProps<{
+export type DetailProps = StaticScreenProps<{
   id: number;
 }>;
 
@@ -30,10 +28,10 @@ const Detail = ({ route }: DetailProps) => {
 
   const header = useMemo(() => {
     if (isLoading) return { title: undefined, description: undefined };
-    if (!data) return { title: "N/A", description: undefined };
+    if (!data || !data?.data) return { title: "N/A", description: undefined };
     return {
       title: data.data.title,
-      description: `${data.data.year} - ${data.data.rating} - ${data.data.duration}`,
+      description: `${data.data.year ?? "N/A"} - ${data.data.rating ?? "N/A"} - ${data.data.duration ?? "N/A"}`,
     };
   }, [data, isLoading]);
 
@@ -42,10 +40,9 @@ const Detail = ({ route }: DetailProps) => {
   }, [navigation]);
 
   const onSharePress = useCallback(() => {
-    const appScheme = Linking.createURL("/");
-    const url = new URL(`${appScheme}/detail/${id}`);
+    const url = Linking.createURL(`detail/${id}`);
     return RNShare.share({
-      message: url.toString(),
+      message: url,
     });
   }, [id]);
 
@@ -53,7 +50,7 @@ const Detail = ({ route }: DetailProps) => {
     if (isLoading) {
       return (
         <View style={styles.loadingContainer}>
-          <ActivityIndicator />
+          <ActivityIndicator color={theme.dark.colors.primary} />
         </View>
       );
     }
@@ -69,18 +66,18 @@ const Detail = ({ route }: DetailProps) => {
     return (
       <Fragment>
         <Poster anime={data.data} />
-        <Technical
+        <Content
+          synopsis={data.data.synopsis}
           studios={data.data.studios}
           producers={data.data.producers}
           licensors={data.data.licensors}
         />
-        <Content synopsis={data.data.synopsis} />
       </Fragment>
     );
   }, [isLoading, isError, refetch, data]);
 
   return (
-    <GestureHandlerRootView>
+    <Fragment>
       <Header
         showBackButton
         onBackPress={goBack}
@@ -92,7 +89,7 @@ const Detail = ({ route }: DetailProps) => {
       <Screen variant="scroll" safeAreaTop={false} safeAreaBottom={false}>
         {renderContent()}
       </Screen>
-    </GestureHandlerRootView>
+    </Fragment>
   );
 };
 
