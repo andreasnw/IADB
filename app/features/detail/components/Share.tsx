@@ -1,5 +1,5 @@
 import Button from "@/app/components/ui/Button";
-import theme from "@/app/config/theme";
+import { theme } from "@/app/config/theme";
 import { AntDesign } from "@expo/vector-icons";
 import React from "react";
 

@@ -2,7 +2,7 @@ import { theme } from "@/app/config/theme";
 import { Entypo } from "@expo/vector-icons";
 import React from "react";
 import { StyleSheet, View } from "react-native";
-import Text from "./Text";
+import Text from "../ui/Text";
 
 const EmptyState = ({ title }: { title: string }) => {
   return (

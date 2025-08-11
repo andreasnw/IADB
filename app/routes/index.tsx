@@ -3,9 +3,29 @@ import {
   StaticParamList,
 } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { Platform } from "react-native";
+import { theme } from "../config/theme";
 import Detail from "../features/detail";
 import Genre from "../features/genre";
 import TabNavigator from "./TabNavigator";
+
+const isAndroid = Platform.OS === "android";
+
+const androidModalOptions = {
+  presentation: "modal" as const,
+  contentStyle: {
+    animationDirection: "vertical",
+    backgroundColor: theme.dark.colors.background,
+  },
+  animation: "slide_from_bottom",
+};
+
+const iosModalOptions = {
+  presentation: "modal" as const,
+  contentStyle: {
+    backgroundColor: "transparent",
+  },
+};
 
 const RootStack = createNativeStackNavigator({
   screens: {
@@ -18,12 +38,7 @@ const RootStack = createNativeStackNavigator({
     },
     Genre: {
       screen: Genre,
-      options: {
-        presentation: "modal",
-        contentStyle: {
-          backgroundColor: "transparent",
-        },
-      },
+      options: isAndroid ? androidModalOptions : iosModalOptions,
     },
   },
   screenOptions: {

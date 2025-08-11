@@ -3,8 +3,8 @@ import { CARD_HEIGHT, PAGE_SIZE } from "@/app/config/constants";
 import { theme } from "@/app/config/theme";
 import React, { useCallback, useMemo } from "react";
 import { FlatList, StyleSheet } from "react-native";
-import EmptyState from "../ui/EmptyState";
-import ErrorState from "../ui/ErrorState";
+import EmptyState from "../layout/EmptyState";
+import ErrorState from "../layout/ErrorState";
 import Card from "./Card";
 import ListLoading from "./ListLoading";
 

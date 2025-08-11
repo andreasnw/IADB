@@ -22,6 +22,7 @@ export default ListLoading;
 const styles = StyleSheet.create({
   container: {
     gap: theme.spacing[1],
+    paddingVertical: theme.spacing[4],
   },
   loading: {
     width: "100%",

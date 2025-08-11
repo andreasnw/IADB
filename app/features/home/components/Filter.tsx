@@ -1,5 +1,5 @@
 import Button from "@/app/components/ui/Button";
-import theme from "@/app/config/theme";
+import { theme } from "@/app/config/theme";
 import { Ionicons } from "@expo/vector-icons";
 import React from "react";
 import { ActivityIndicator } from "react-native";
@@ -12,7 +12,7 @@ type FilterProps = {
 
 const Filter = ({ isFiltered, onPress, isFetching }: FilterProps) => {
   if (isFetching) {
-    return <ActivityIndicator />;
+    return <ActivityIndicator color={theme.dark.colors.primary} />;
   }
   return (
     <Button

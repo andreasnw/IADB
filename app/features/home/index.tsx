@@ -21,7 +21,7 @@ const Home = () => {
   } = useGetAnimeList({ genre: genre?.mal_id ?? null });
 
   const animeList = useMemo(
-    () => data?.pages.flatMap((page) => page.data) ?? [],
+    () => data?.pages?.flatMap((page) => page.data) ?? [],
     [data],
   );
 
