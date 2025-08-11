@@ -35,7 +35,8 @@ Internet Anime Database (IADB) is a mobile app built with **React Native**, **Ex
    ```
 
 2. **Generate .env file**
-   Copy env example file, fill in the EXPO_PUBLIC_API_URL with 'https://api.jikan.moe/v4/'
+   
+   Copy env example file, fill in the EXPO_PUBLIC_API_URL with ``` https://api.jikan.moe/v4/' ```
 
 2. **Start the app**  
    ```bash
