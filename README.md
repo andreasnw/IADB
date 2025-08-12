@@ -55,7 +55,7 @@ You'll be prompted to open the app in:
 Navigation is powered by **React Navigation**, structured for scalability and safety:
 
 1. **Centralized Configuration**  
-   All navigators (Stack/Tab) and their screens are defined in `src/navigation/`, ensuring a single source of truth.
+   All navigators (Stack/Tab) and their screens are defined in `src/routes/`, ensuring a single source of truth.
 
 2. **Type-Safe Routes**  
    Using TypeScript, route parameters are strongly typed—enabling autocompletion and compile-time checks for all navigation-related code.
